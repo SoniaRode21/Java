@@ -1,0 +1,42 @@
+/**
+ Average of Levels in Binary Tree
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class AvgLevelsBT {
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> l=new ArrayList<Double>();
+        Queue<TreeNode> q = new LinkedList<TreeNode> ();  
+    q.add(root);  
+    long sum = 0, count  = 0; 
+  
+    while (!q.isEmpty()) {  
+  
+        // Compute sum of nodes and  
+        // count of nodes in current  
+        // level.  
+        sum = 0; 
+        count = 0;  
+        Queue<TreeNode> temp = new LinkedList<TreeNode> ();  
+        while (!q.isEmpty()) {  
+            TreeNode n = q.peek();  
+            q.remove();  
+            sum += n.val;  
+            count++;  
+            if (n.left != null)  
+                temp.add(n.left);  
+            if (n.right != null)  
+                temp.add(n.right);  
+        }  
+        q = temp;  
+        l.add(sum * 1.0 / count);
+        System.out.print((sum * 1.0 / count) + " ");  
+    }  
+return l;
+    }
+}
